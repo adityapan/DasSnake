@@ -1,10 +1,13 @@
 import { getInputDirection } from "./input.js";
 
-export const SNAKE_SPEED_PER_SECOND = 1;
+export const SNAKE_SPEED_PER_SECOND = 7;
 
 const snakeBody = [{ x: 11, y: 11 }];
+let newSegments = 0;
 
 export function update() {
+  addSegments();
+
   let currentHeadSegment = snakeBody.pop();
   let newHeadSegment = { x: 0, y: 0 };
 
@@ -27,4 +30,21 @@ export function render(gameBoard) {
     snakeElement.classList.add("snake");
     gameBoard.appendChild(snakeElement);
   });
+}
+
+export function expandSnake(growth) {
+  newSegments += growth;
+}
+
+export function onSnake(position) {
+  return snakeBody.some(segment => {
+    return segment.x === position.x && segment.y === position.y;
+  });
+}
+
+function addSegments() {
+  for (let i = 0; i < newSegments; i++) {
+    snakeBody.push({ ...snakeBody[snakeBody.length - 1] });
+  }
+  newSegments = 0;
 }
