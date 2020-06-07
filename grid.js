@@ -10,3 +10,12 @@ export function randomEmptyGridPosition() {
   }
   return emptyPositions[Math.floor(Math.random() * emptyPositions.length)];
 }
+
+export function outOfGrid(position) {
+  return (
+    position.x < 1 ||
+    position.x > GRID_SIZE ||
+    position.y < 1 ||
+    position.y > GRID_SIZE
+  );
+}

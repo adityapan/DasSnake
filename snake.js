@@ -1,4 +1,5 @@
 import { getInputDirection } from "./input.js";
+import { outOfGrid } from "./grid.js";
 
 export const SNAKE_SPEED_PER_SECOND = 7;
 
@@ -10,11 +11,21 @@ export function update() {
 
   let currentHeadSegment = snakeBody.pop();
   let newHeadSegment = { x: 0, y: 0 };
-
   let moveDirection = getInputDirection();
 
   newHeadSegment.x = currentHeadSegment.x + moveDirection.x;
   newHeadSegment.y = currentHeadSegment.y + moveDirection.y;
+
+  if (outOfGrid(newHeadSegment)) {
+    alert("Game Over");
+    window.location = window.location;
+    return;
+  }
+  if (onSnake(newHeadSegment)) {
+    alert("Game Over");
+    window.location = window.location;
+    return;
+  }
 
   snakeBody.push(currentHeadSegment);
   snakeBody.push(newHeadSegment);
