@@ -8,7 +8,7 @@ body {
   background-color: #ccc;
 }
 
-#game-board {
+#gameBoard {
   background-color: black;
   width: 100vmin;
   height: 100vmin;
