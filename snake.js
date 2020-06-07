@@ -16,17 +16,6 @@ export function update() {
   newHeadSegment.x = currentHeadSegment.x + moveDirection.x;
   newHeadSegment.y = currentHeadSegment.y + moveDirection.y;
 
-  if (outOfGrid(newHeadSegment)) {
-    alert("Game Over");
-    window.location = window.location;
-    return;
-  }
-  if (onSnake(newHeadSegment)) {
-    alert("Game Over");
-    window.location = window.location;
-    return;
-  }
-
   snakeBody.push(currentHeadSegment);
   snakeBody.push(newHeadSegment);
 
@@ -53,9 +42,25 @@ export function onSnake(position) {
   });
 }
 
+export function snakeIntersected(bodyWithoutHead, position) {
+  return bodyWithoutHead.some(segment => {
+    return segment.x === position.x && segment.y === position.y;
+  });
+}
+
 function addSegments() {
   for (let i = 0; i < newSegments; i++) {
     snakeBody.push({ ...snakeBody[snakeBody.length - 1] });
   }
   newSegments = 0;
+}
+
+export function isSnakeDead() {
+  let snakeBodyCopy = snakeBody.slice();
+  let snakeHead = snakeBodyCopy.pop();
+  if (outOfGrid(snakeHead)) {
+    return true;
+  }
+
+  return snakeIntersected(snakeBodyCopy, snakeHead);
 }

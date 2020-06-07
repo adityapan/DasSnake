@@ -1,7 +1,8 @@
 import {
   update as updateSnake,
   render as renderSnake,
-  SNAKE_SPEED_PER_SECOND
+  SNAKE_SPEED_PER_SECOND,
+  isSnakeDead
 } from "./snake.js";
 
 import { update as updateFood, render as renderFood } from "./food.js";
@@ -10,6 +11,11 @@ let lastRenderTime = 0;
 const gameBoard = document.getElementById("gameBoard");
 
 function gameLoop(currentTime) {
+  if (isSnakeDead()) {
+    alert("Game Over!");
+    window.location = window.location;
+    return;
+  }
   window.requestAnimationFrame(gameLoop);
 
   const secondsSinceLastRender = (currentTime - lastRenderTime) / 1000;
