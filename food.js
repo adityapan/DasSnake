@@ -14,7 +14,10 @@ export function render(gameBoard) {
   const foodElement = document.createElement("div");
   foodElement.style.gridRowStart = food.y;
   foodElement.style.gridColumnStart = food.x;
-  foodElement.classList.add("food");
+  //foodElement.classList.add("food");
+  const imageElement = document.createElement("img");
+  imageElement.src = "./images/food.png";
+  foodElement.appendChild(imageElement);
   gameBoard.appendChild(foodElement);
 }
 

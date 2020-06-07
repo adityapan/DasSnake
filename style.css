@@ -17,12 +17,7 @@ body {
   grid-template-columns: repeat(21, 1fr);
 }
 
-.snake {
-  background-color: green;
-  border: 0.25vmin solid yellow;
-}
-
-.food {
-  background-color: red;
-  border: 0.25vmin solid brown;
+img {
+  width: 100%;
+  height: 100%;
 }

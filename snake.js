@@ -25,11 +25,19 @@ export function update() {
 }
 
 export function render(gameBoard) {
-  snakeBody.forEach(segment => {
+  snakeBody.forEach((segment, index) => {
     const snakeElement = document.createElement("div");
     snakeElement.style.gridRowStart = segment.y;
     snakeElement.style.gridColumnStart = segment.x;
-    snakeElement.classList.add("snake");
+    if (index == snakeBody.length - 1) {
+      const imageElement = document.createElement("img");
+      imageElement.src = "./images/snake.png";
+      snakeElement.appendChild(imageElement);
+    } else {
+      const imageElement = document.createElement("img");
+      imageElement.src = "./images/food.png";
+      snakeElement.appendChild(imageElement);
+    }
     gameBoard.appendChild(snakeElement);
   });
 }
