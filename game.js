@@ -6,6 +6,7 @@ import {
 
 let lastRenderTime = 0;
 const gameBoard = document.getElementById("gameBoard");
+let currentDirection = "x";
 
 function gameLoop(currentTime) {
   window.requestAnimationFrame(gameLoop);
@@ -27,5 +28,6 @@ function update() {
 }
 
 function draw() {
+  gameBoard.innerHTML = "";
   renderSnake(gameBoard);
 }
