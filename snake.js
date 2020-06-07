@@ -1,7 +1,7 @@
 import { getInputDirection } from "./input.js";
 import { outOfGrid } from "./grid.js";
 
-export const SNAKE_SPEED_PER_SECOND = 7;
+export let SNAKE_SPEED_PER_SECOND = 7;
 
 const snakeBody = [{ x: 11, y: 11 }];
 let newSegments = 0;
@@ -20,6 +20,8 @@ export function update() {
   snakeBody.push(newHeadSegment);
 
   snakeBody.shift();
+
+  SNAKE_SPEED_PER_SECOND = 7 + Math.floor((snakeBody.length - 1) / 3);
 }
 
 export function render(gameBoard) {
